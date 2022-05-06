@@ -1,13 +1,14 @@
 import requests, uuid, json
 
+from bot.config import Config
 
 class AzureTranslator():
 
     def __init__(self):
-
+        c = Config()
         # Add your subscription key and endpoint
-        subscription_key = "710de65c377943c39e3e28be216174f9"
-        endpoint = "https://api.cognitive.microsofttranslator.com"
+        subscription_key = c.get_value("AZURELANGUAGE","KEY")
+        endpoint = c.get_value("AZURELANGUAGE","ENDPOINT")
 
         # Add your location, also known as region. The default is global.
         # This is required if using a Cognitive Services resource.
@@ -47,4 +48,5 @@ class AzureTranslator():
 if __name__ == "__main__":
 
     azure_ = AzureTranslator()
-    azure_.translate("Hello World")
+    text_ = azure_.translate("Hello World")
+    print(text_)

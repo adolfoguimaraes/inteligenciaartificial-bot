@@ -1,6 +1,7 @@
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from msrest.authentication import CognitiveServicesCredentials
-import os
+
+from bot.config import Config
 
 
 # pip install azure-cognitiveservices-vision-computervision
@@ -8,9 +9,10 @@ import os
 class AzureCaption():
 
     def __init__(self):
+        c = Config()
         self.region = "eastus"
-        self.key = "7a600cf67daa4e4eae3b796213a9cff2"
-        self.endpoint = "https://d2l-captionimage.cognitiveservices.azure.com/"
+        self.key = str(c.get_value('AZUREIMAGE','KEY'))
+        self.endpoint = str(c.get_value('AZUREIMAGE', 'ENDPOINT'))
         
 
         self.credentials = CognitiveServicesCredentials(self.key)
@@ -28,7 +30,7 @@ if __name__ == "__main__":
 
     azure_ = AzureCaption()
 
-    with open("smile-g2f31ce42f_1920.jpg",'rb') as img:
+    with open("data/img_test/img1.jpg",'rb') as img:
         text_ = azure_.caption_image(img)
         print(text_)
 

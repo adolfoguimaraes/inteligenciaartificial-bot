@@ -8,12 +8,15 @@ from ai.azure_caption import AzureCaption
 from ai.azure_translator import AzureTranslator
 from ai.custom_sentiment import CustomSentiment
 
+from bot.config import Config
+
 azureCaption = AzureCaption()
 azureTranlator = AzureTranslator()
 customSentiment = CustomSentiment()
 
+c = Config()
 
-updater = Updater(token='5372801868:AAE1i9iict8hAGQqAInlctSgjv2d7fap1Gs', use_context=True)
+updater = Updater(token=c.get_value("TELEGRAMBOT","TOKEN"), use_context=True)
 
 dispatcher = updater.dispatcher
 
