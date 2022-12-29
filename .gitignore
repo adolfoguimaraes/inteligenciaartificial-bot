@@ -1,2 +1,5 @@
 __pycache__
 config.ini
+.DS_Store
+data/.DS_Store
+data/.DS_Store
